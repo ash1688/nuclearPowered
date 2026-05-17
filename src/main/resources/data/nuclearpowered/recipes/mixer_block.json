@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [ "ICI", "BRB", "ICI" ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "C": { "tag": "forge:ingots/copper" },
+    "B": { "item": "minecraft:bucket" },
+    "R": { "tag": "forge:storage_blocks/redstone" }
+  },
+  "result": { "item": "nuclearpowered:mixer", "count": 1 }
+}

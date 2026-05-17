@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nuclearpowered:block/cutter" },
+    "facing=south": { "model": "nuclearpowered:block/cutter", "y": 180 },
+    "facing=east":  { "model": "nuclearpowered:block/cutter", "y": 90  },
+    "facing=west":  { "model": "nuclearpowered:block/cutter", "y": 270 }
+  }
+}

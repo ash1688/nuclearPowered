@@ -1,0 +1,7 @@
+{
+  "type": "nuclearpowered:gaseous_diffusion",
+  "ingredients": [ { "item": "nuclearpowered:green_salt" } ],
+  "output_fluid": { "fluid": "nuclearpowered:uf6", "amount": 250 },
+  "energy": 1800,
+  "duration": 160
+}

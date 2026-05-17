@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": { "item": "nuclearpowered:uranium_oxide" },
+  "result": "nuclearpowered:green_salt",
+  "experience": 0.4,
+  "cookingtime": 200
+}

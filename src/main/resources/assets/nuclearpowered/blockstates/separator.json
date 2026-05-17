@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "nuclearpowered:block/separator" },
+    "facing=south": { "model": "nuclearpowered:block/separator", "y": 180 },
+    "facing=east":  { "model": "nuclearpowered:block/separator", "y": 90  },
+    "facing=west":  { "model": "nuclearpowered:block/separator", "y": 270 }
+  }
+}

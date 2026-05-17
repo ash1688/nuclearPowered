@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top":   "nuclearpowered:block/fuel_rod_assembly_top",
+    "front": "nuclearpowered:block/fuel_rod_assembly_front",
+    "side":  "nuclearpowered:block/fuel_rod_assembly_side"
+  }
+}

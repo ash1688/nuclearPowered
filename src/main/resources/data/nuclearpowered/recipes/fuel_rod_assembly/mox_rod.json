@@ -1,0 +1,10 @@
+{
+  "type": "nuclearpowered:fuel_rod_assembly",
+  "ingredients": [
+    { "item": "nuclearpowered:mox_pellet" },
+    { "item": "nuclearpowered:empty_cladding" }
+  ],
+  "result": { "item": "nuclearpowered:mox_fuel_rod", "count": 1 },
+  "energy": 1200,
+  "duration": 120
+}

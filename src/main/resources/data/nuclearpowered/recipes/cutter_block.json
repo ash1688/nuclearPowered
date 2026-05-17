@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [ "ISI", "IRI", "ICI" ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "S": { "item": "minecraft:shears" },
+    "R": { "item": "minecraft:redstone" },
+    "C": { "item": "minecraft:cobblestone" }
+  },
+  "result": { "item": "nuclearpowered:cutter", "count": 1 }
+}

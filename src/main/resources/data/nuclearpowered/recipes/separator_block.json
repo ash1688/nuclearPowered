@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [ "ICI", "GRG", "ICI" ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "C": { "tag": "forge:ingots/copper" },
+    "G": { "item": "minecraft:glass" },
+    "R": { "tag": "forge:storage_blocks/redstone" }
+  },
+  "result": { "item": "nuclearpowered:separator", "count": 1 }
+}

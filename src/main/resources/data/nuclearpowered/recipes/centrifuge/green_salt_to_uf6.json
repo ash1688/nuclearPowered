@@ -1,0 +1,7 @@
+{
+  "type": "nuclearpowered:centrifuge",
+  "ingredients": [ { "item": "nuclearpowered:green_salt" } ],
+  "output_fluid": { "fluid": "nuclearpowered:uf6", "amount": 200 },
+  "energy": 1500,
+  "duration": 140
+}

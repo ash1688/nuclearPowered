@@ -1,0 +1,10 @@
+{
+  "type": "nuclearpowered:fuel_rod_assembly",
+  "ingredients": [
+    { "item": "nuclearpowered:natural_uranium_pellet" },
+    { "item": "nuclearpowered:empty_cladding" }
+  ],
+  "result": { "item": "nuclearpowered:natural_uranium_fuel_rod", "count": 1 },
+  "energy": 800,
+  "duration": 100
+}

@@ -51,8 +51,16 @@ public final class NPCreativeTabs {
                         output.accept(NPItems.UPGRADE_INCREASED_STEAM.get());
                         output.accept(NPItems.UPGRADE_CLADDING.get());
 
-                        // Machines
+                        // Machines (M3)
                         output.accept(NPBlocks.ORE_CRUSHER.get());
+                        output.accept(NPBlocks.CUTTER.get());
+                        output.accept(NPBlocks.MACERATOR.get());
+                        output.accept(NPBlocks.SEPARATOR.get());
+                        output.accept(NPBlocks.MIXER.get());
+                        output.accept(NPBlocks.FUEL_ROD_ASSEMBLY.get());
+                        output.accept(NPBlocks.GASEOUS_DIFFUSION.get());
+                        output.accept(NPBlocks.CENTRIFUGE.get());
+                        output.accept(NPBlocks.CONVERTER.get());
                     })
                     .build());
 

@@ -1,6 +1,6 @@
 {
   "type": "nuclearpowered:ore_crusher",
-  "ingredient": { "tag": "forge:ores/uranium" },
+  "ingredients": [ { "tag": "forge:ores/uranium" } ],
   "result": { "item": "nuclearpowered:yellowcake", "count": 2 },
   "energy": 1200,
   "duration": 100

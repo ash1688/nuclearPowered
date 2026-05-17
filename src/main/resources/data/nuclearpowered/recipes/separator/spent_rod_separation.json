@@ -1,0 +1,8 @@
+{
+  "type": "nuclearpowered:separator",
+  "ingredients": [ { "item": "nuclearpowered:spent_fuel_rod" } ],
+  "result": { "item": "nuclearpowered:reclaim_uranium_powder", "count": 1 },
+  "secondary_result": { "item": "nuclearpowered:plutonium_dust", "count": 1, "chance": 50 },
+  "energy": 1500,
+  "duration": 140
+}

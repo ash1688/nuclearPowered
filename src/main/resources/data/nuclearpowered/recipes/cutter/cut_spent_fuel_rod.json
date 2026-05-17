@@ -1,0 +1,7 @@
+{
+  "type": "nuclearpowered:cutter",
+  "ingredients": [ { "item": "nuclearpowered:spent_fuel_rod" } ],
+  "result": { "item": "nuclearpowered:empty_cladding", "count": 1 },
+  "energy": 600,
+  "duration": 80
+}

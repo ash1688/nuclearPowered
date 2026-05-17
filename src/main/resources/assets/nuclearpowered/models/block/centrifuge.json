@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top":   "nuclearpowered:block/centrifuge_top",
+    "front": "nuclearpowered:block/centrifuge_front",
+    "side":  "nuclearpowered:block/centrifuge_side"
+  }
+}

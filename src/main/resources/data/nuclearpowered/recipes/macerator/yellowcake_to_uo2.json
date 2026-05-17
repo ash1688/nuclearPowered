@@ -1,0 +1,7 @@
+{
+  "type": "nuclearpowered:macerator",
+  "ingredients": [ { "item": "nuclearpowered:yellowcake" } ],
+  "result": { "item": "nuclearpowered:uranium_oxide", "count": 1 },
+  "energy": 800,
+  "duration": 80
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [ "ICI", "IRI", "IPI" ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "C": { "tag": "forge:ingots/copper" },
+    "R": { "tag": "forge:storage_blocks/redstone" },
+    "P": { "item": "minecraft:piston" }
+  },
+  "result": { "item": "nuclearpowered:macerator", "count": 1 }
+}

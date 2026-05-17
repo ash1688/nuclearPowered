@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [ "SIS", "IRI", "SIS" ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "S": { "tag": "forge:ingots/copper" },
+    "R": { "tag": "forge:storage_blocks/redstone" }
+  },
+  "result": { "item": "nuclearpowered:fuel_rod_assembly", "count": 1 }
+}

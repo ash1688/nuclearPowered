@@ -1,0 +1,10 @@
+{
+  "type": "nuclearpowered:mixer",
+  "ingredients": [
+    { "item": "nuclearpowered:reclaim_uranium_powder" },
+    { "item": "nuclearpowered:plutonium_dust" }
+  ],
+  "result": { "item": "nuclearpowered:mox_pellet", "count": 1 },
+  "energy": 1500,
+  "duration": 120
+}

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "ingredient": { "item": "nuclearpowered:yellowcake" },
+  "result": "nuclearpowered:uranium_oxide",
+  "experience": 0.3,
+  "cookingtime": 100
+}

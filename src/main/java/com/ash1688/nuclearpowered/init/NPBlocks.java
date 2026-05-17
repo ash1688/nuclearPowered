@@ -1,7 +1,7 @@
 package com.ash1688.nuclearpowered.init;
 
 import com.ash1688.nuclearpowered.NuclearPowered;
-import com.ash1688.nuclearpowered.machine.OreCrusherBlock;
+import com.ash1688.nuclearpowered.machine.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -55,10 +55,24 @@ public final class NPBlocks {
     );
 
     // ===== M3: Single-block machines =====
-    public static final RegistryObject<Block> ORE_CRUSHER = registerWithItem(
-            "ore_crusher",
-            OreCrusherBlock::new
-    );
+    public static final RegistryObject<Block> ORE_CRUSHER = registerWithItem("ore_crusher",
+            () -> new MachineBlock(OreCrusherBlockEntity::new, NPBlockEntities.ORE_CRUSHER));
+    public static final RegistryObject<Block> CUTTER = registerWithItem("cutter",
+            () -> new MachineBlock(CutterBlockEntity::new, NPBlockEntities.CUTTER));
+    public static final RegistryObject<Block> MACERATOR = registerWithItem("macerator",
+            () -> new MachineBlock(MaceratorBlockEntity::new, NPBlockEntities.MACERATOR));
+    public static final RegistryObject<Block> SEPARATOR = registerWithItem("separator",
+            () -> new MachineBlock(SeparatorBlockEntity::new, NPBlockEntities.SEPARATOR));
+    public static final RegistryObject<Block> MIXER = registerWithItem("mixer",
+            () -> new MachineBlock(MixerBlockEntity::new, NPBlockEntities.MIXER));
+    public static final RegistryObject<Block> FUEL_ROD_ASSEMBLY = registerWithItem("fuel_rod_assembly",
+            () -> new MachineBlock(FuelRodAssemblyBlockEntity::new, NPBlockEntities.FUEL_ROD_ASSEMBLY));
+    public static final RegistryObject<Block> GASEOUS_DIFFUSION = registerWithItem("gaseous_diffusion",
+            () -> new MachineBlock(GaseousDiffusionBlockEntity::new, NPBlockEntities.GASEOUS_DIFFUSION));
+    public static final RegistryObject<Block> CENTRIFUGE = registerWithItem("centrifuge",
+            () -> new MachineBlock(CentrifugeBlockEntity::new, NPBlockEntities.CENTRIFUGE));
+    public static final RegistryObject<Block> CONVERTER = registerWithItem("converter",
+            () -> new MachineBlock(ConverterBlockEntity::new, NPBlockEntities.CONVERTER));
 
     private static <B extends Block> RegistryObject<B> registerWithItem(String name, Supplier<B> blockSupplier) {
         RegistryObject<B> block = REGISTER.register(name, blockSupplier);

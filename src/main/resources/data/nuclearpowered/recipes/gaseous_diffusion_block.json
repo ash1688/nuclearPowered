@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [ "ICI", "GRG", "IBI" ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "C": { "tag": "forge:ingots/copper" },
+    "G": { "item": "minecraft:glass" },
+    "R": { "tag": "forge:storage_blocks/redstone" },
+    "B": { "item": "minecraft:bucket" }
+  },
+  "result": { "item": "nuclearpowered:gaseous_diffusion", "count": 1 }
+}

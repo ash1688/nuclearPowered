@@ -1,0 +1,10 @@
+{
+  "type": "nuclearpowered:fuel_rod_assembly",
+  "ingredients": [
+    { "item": "nuclearpowered:leu_pellet" },
+    { "item": "nuclearpowered:empty_cladding" }
+  ],
+  "result": { "item": "nuclearpowered:leu_fuel_rod", "count": 1 },
+  "energy": 1000,
+  "duration": 110
+}

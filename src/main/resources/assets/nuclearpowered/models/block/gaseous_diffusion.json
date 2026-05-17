@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top":   "nuclearpowered:block/gaseous_diffusion_top",
+    "front": "nuclearpowered:block/gaseous_diffusion_front",
+    "side":  "nuclearpowered:block/gaseous_diffusion_side"
+  }
+}
