@@ -27,6 +27,7 @@ public final class NPItems {
     private static Item.Properties basic() { return new Item.Properties(); }
 
     // ===== Ores & raw materials =====
+    public static final RegistryObject<Item> RAW_URANIUM = REGISTER.register("raw_uranium", () -> new Item(basic()));
     public static final RegistryObject<Item> YELLOWCAKE = REGISTER.register("yellowcake", () -> new Item(basic()));
     public static final RegistryObject<Item> URANIUM_OXIDE = REGISTER.register("uranium_oxide", () -> new Item(basic()));
     public static final RegistryObject<Item> GREEN_SALT = REGISTER.register("green_salt", () -> new Item(basic())); // UF4

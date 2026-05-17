@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "ICI",
+    "I I",
+    "ICI"
+  ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "C": { "tag": "forge:ingots/copper" }
+  },
+  "result": { "item": "nuclearpowered:empty_cladding", "count": 2 }
+}

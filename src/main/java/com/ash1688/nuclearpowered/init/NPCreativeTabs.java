@@ -22,6 +22,7 @@ public final class NPCreativeTabs {
                         output.accept(NPBlocks.DEEPSLATE_URANIUM_ORE.get());
                         output.accept(NPBlocks.RAW_URANIUM_BLOCK.get());
 
+                        output.accept(NPItems.RAW_URANIUM.get());
                         output.accept(NPItems.YELLOWCAKE.get());
                         output.accept(NPItems.URANIUM_OXIDE.get());
                         output.accept(NPItems.GREEN_SALT.get());
