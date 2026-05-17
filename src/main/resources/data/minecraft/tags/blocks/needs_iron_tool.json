@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "nuclearpowered:uranium_ore",
+    "nuclearpowered:deepslate_uranium_ore",
+    "nuclearpowered:raw_uranium_block"
+  ]
+}
