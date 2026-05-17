@@ -1,0 +1,39 @@
+{
+  "itemGroup.nuclearpowered": "Nuclear Powered",
+
+  "block.nuclearpowered.uranium_ore": "Uranium Ore",
+  "block.nuclearpowered.deepslate_uranium_ore": "Deepslate Uranium Ore",
+  "block.nuclearpowered.raw_uranium_block": "Block of Raw Uranium",
+
+  "item.nuclearpowered.yellowcake": "Yellowcake",
+  "item.nuclearpowered.uranium_oxide": "Uranium Oxide (UO₂)",
+  "item.nuclearpowered.green_salt": "Green Salt (UF₄)",
+
+  "item.nuclearpowered.plutonium_dust": "Plutonium Dust",
+  "item.nuclearpowered.caesium": "Caesium",
+  "item.nuclearpowered.reclaim_uranium_powder": "Reclaim Uranium Powder",
+
+  "item.nuclearpowered.natural_uranium_pellet": "Natural Uranium Pellet",
+  "item.nuclearpowered.leu_pellet": "LEU Pellet",
+  "item.nuclearpowered.mox_pellet": "MOX Pellet",
+
+  "item.nuclearpowered.empty_cladding": "Empty Fuel Cladding",
+  "item.nuclearpowered.natural_uranium_fuel_rod": "Natural Uranium Fuel Rod",
+  "item.nuclearpowered.leu_fuel_rod": "LEU Fuel Rod",
+  "item.nuclearpowered.mox_fuel_rod": "MOX Fuel Rod",
+  "item.nuclearpowered.spent_fuel_rod": "Spent Fuel Rod",
+
+  "item.nuclearpowered.igniter_s2": "Stage 2 Igniter",
+
+  "item.nuclearpowered.stage_1_coin": "Stage 1 Coin",
+  "item.nuclearpowered.stage_2_coin": "Stage 2 Coin",
+
+  "item.nuclearpowered.upgrade_extended_burn": "Controller Upgrade: Extended Burn",
+  "item.nuclearpowered.upgrade_reduced_water": "Controller Upgrade: Reduced Water",
+  "item.nuclearpowered.upgrade_increased_steam": "Controller Upgrade: Increased Steam",
+  "item.nuclearpowered.upgrade_cladding": "Cladding Upgrade",
+
+  "fluid_type.nuclearpowered.uf6": "Uranium Hexafluoride (UF₆)",
+  "fluid_type.nuclearpowered.steam": "Steam",
+  "fluid_type.nuclearpowered.tritium": "Tritium"
+}
