@@ -50,6 +50,9 @@ public final class NPCreativeTabs {
                         output.accept(NPItems.UPGRADE_REDUCED_WATER.get());
                         output.accept(NPItems.UPGRADE_INCREASED_STEAM.get());
                         output.accept(NPItems.UPGRADE_CLADDING.get());
+
+                        // Machines
+                        output.accept(NPBlocks.ORE_CRUSHER.get());
                     })
                     .build());
 

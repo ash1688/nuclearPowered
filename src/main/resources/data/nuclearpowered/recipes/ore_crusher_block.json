@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [
+    "ICI",
+    "CRC",
+    "IBI"
+  ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "C": { "item": "minecraft:cobblestone" },
+    "R": { "tag": "forge:storage_blocks/redstone" },
+    "B": { "tag": "forge:ingots/copper" }
+  },
+  "result": { "item": "nuclearpowered:ore_crusher", "count": 1 }
+}

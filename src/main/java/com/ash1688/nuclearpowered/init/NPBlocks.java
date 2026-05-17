@@ -1,6 +1,7 @@
 package com.ash1688.nuclearpowered.init;
 
 import com.ash1688.nuclearpowered.NuclearPowered;
+import com.ash1688.nuclearpowered.machine.OreCrusherBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -51,6 +52,12 @@ public final class NPBlocks {
                     .mapColor(MapColor.COLOR_GREEN)
                     .strength(5.0F, 6.0F)
                     .requiresCorrectToolForDrops())
+    );
+
+    // ===== M3: Single-block machines =====
+    public static final RegistryObject<Block> ORE_CRUSHER = registerWithItem(
+            "ore_crusher",
+            OreCrusherBlock::new
     );
 
     private static <B extends Block> RegistryObject<B> registerWithItem(String name, Supplier<B> blockSupplier) {

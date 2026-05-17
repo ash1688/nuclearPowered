@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top":   "nuclearpowered:block/ore_crusher_top",
+    "front": "nuclearpowered:block/ore_crusher_front",
+    "side":  "nuclearpowered:block/ore_crusher_side"
+  }
+}

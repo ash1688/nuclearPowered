@@ -4,6 +4,7 @@
   "block.nuclearpowered.uranium_ore": "Uranium Ore",
   "block.nuclearpowered.deepslate_uranium_ore": "Deepslate Uranium Ore",
   "block.nuclearpowered.raw_uranium_block": "Block of Raw Uranium",
+  "block.nuclearpowered.ore_crusher": "Ore Crusher",
 
   "item.nuclearpowered.raw_uranium": "Raw Uranium",
   "item.nuclearpowered.yellowcake": "Yellowcake",

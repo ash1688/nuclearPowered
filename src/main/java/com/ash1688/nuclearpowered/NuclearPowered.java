@@ -1,9 +1,12 @@
 package com.ash1688.nuclearpowered;
 
+import com.ash1688.nuclearpowered.init.NPBlockEntities;
 import com.ash1688.nuclearpowered.init.NPBlocks;
 import com.ash1688.nuclearpowered.init.NPCreativeTabs;
 import com.ash1688.nuclearpowered.init.NPFluids;
 import com.ash1688.nuclearpowered.init.NPItems;
+import com.ash1688.nuclearpowered.init.NPMenus;
+import com.ash1688.nuclearpowered.init.NPRecipes;
 import com.mojang.logging.LogUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -25,6 +28,10 @@ public final class NuclearPowered {
         NPBlocks.REGISTER.register(modBus);
         NPFluids.FLUIDS.register(modBus);
         NPFluids.FLUID_TYPES.register(modBus);
+        NPBlockEntities.REGISTER.register(modBus);
+        NPMenus.REGISTER.register(modBus);
+        NPRecipes.TYPES.register(modBus);
+        NPRecipes.SERIALIZERS.register(modBus);
         NPCreativeTabs.REGISTER.register(modBus);
 
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, NPConfig.COMMON_SPEC);
