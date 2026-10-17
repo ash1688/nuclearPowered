@@ -1,6 +1,5 @@
 package com.ash1688.nuclearpowered.machine;
 
-import com.ash1688.nuclearpowered.init.NPBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
@@ -26,6 +25,9 @@ import net.minecraftforge.registries.RegistryObject;
  * Subclasses just pass slot coordinates and the appropriate MenuType + Block ref.
  */
 public abstract class BaseMachineMenu extends AbstractContainerMenu {
+    /** Player inventory slot count: 3 rows of 9 main inventory + 9 hotbar. */
+    protected static final int PLAYER_INVENTORY_SLOTS = 36;
+
     protected final AbstractMachineBlockEntity blockEntity;
     protected final ContainerLevelAccess access;
     protected final ContainerData data;
@@ -100,8 +102,13 @@ public abstract class BaseMachineMenu extends AbstractContainerMenu {
         int inputCount = blockEntity.getInputSlotCount();
 
         if (index < totalMachineSlots) {
-            if (!moveItemStackTo(original, totalMachineSlots, totalMachineSlots + 36, true)) return ItemStack.EMPTY;
+            // Machine slot → player inventory
+            if (!moveItemStackTo(original, totalMachineSlots, totalMachineSlots + PLAYER_INVENTORY_SLOTS, true)) return ItemStack.EMPTY;
         } else {
+            // Player inventory → machine inputs. Fluid-only machines have inputCount == 0;
+            // bail out cleanly rather than calling moveItemStackTo(stack, 0, 0, false) which
+            // silently no-ops (and would otherwise look like the item vanished from the UI).
+            if (inputCount == 0) return ItemStack.EMPTY;
             if (!moveItemStackTo(original, 0, inputCount, false)) return ItemStack.EMPTY;
         }
         if (original.isEmpty()) slot.set(ItemStack.EMPTY);
@@ -123,8 +130,4 @@ public abstract class BaseMachineMenu extends AbstractContainerMenu {
         }
         return machine;
     }
-
-    /** Unused — kept to satisfy import. */
-    @SuppressWarnings("unused")
-    private static NPBlocks unusedRef() { return null; }
 }

@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "#forge:dusts/yellowcake",
+    "#forge:dusts/uranium_oxide",
+    "#forge:dusts/uranium_tetrafluoride",
+    "#forge:dusts/plutonium",
+    "#forge:dusts/caesium",
+    "#forge:dusts/reclaim_uranium"
+  ]
+}

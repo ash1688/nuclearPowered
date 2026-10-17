@@ -26,10 +26,8 @@ public final class NPClientSetup {
             reg(NPMenus.MIXER.get(), "mixer", 100, 35);
             reg(NPMenus.FUEL_ROD_ASSEMBLY.get(), "fuel_rod_assembly", 100, 35);
 
-            // Fluid-output machines (Diffusion, Centrifuge): fluid bar on right
+            // Fluid-output machines (Diffusion): fluid bar on right
             regFluid(NPMenus.GASEOUS_DIFFUSION.get(), "gaseous_diffusion", 79, 35,
-                    false, 0, 0, true, 116, 14);
-            regFluid(NPMenus.CENTRIFUGE.get(), "centrifuge", 79, 35,
                     false, 0, 0, true, 116, 14);
             // Fluid-input machine (Converter): fluid bar on left
             regFluid(NPMenus.CONVERTER.get(), "converter", 79, 35,

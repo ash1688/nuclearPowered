@@ -69,8 +69,6 @@ public final class NPBlocks {
             () -> new MachineBlock(FuelRodAssemblyBlockEntity::new, NPBlockEntities.FUEL_ROD_ASSEMBLY));
     public static final RegistryObject<Block> GASEOUS_DIFFUSION = registerWithItem("gaseous_diffusion",
             () -> new MachineBlock(GaseousDiffusionBlockEntity::new, NPBlockEntities.GASEOUS_DIFFUSION));
-    public static final RegistryObject<Block> CENTRIFUGE = registerWithItem("centrifuge",
-            () -> new MachineBlock(CentrifugeBlockEntity::new, NPBlockEntities.CENTRIFUGE));
     public static final RegistryObject<Block> CONVERTER = registerWithItem("converter",
             () -> new MachineBlock(ConverterBlockEntity::new, NPBlockEntities.CONVERTER));
 

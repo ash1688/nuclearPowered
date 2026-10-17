@@ -22,7 +22,6 @@ public final class NPRecipes {
     public static final RegistryObject<RecipeType<MachineRecipe>> MIXER_TYPE = type("mixer");
     public static final RegistryObject<RecipeType<MachineRecipe>> FUEL_ROD_ASSEMBLY_TYPE = type("fuel_rod_assembly");
     public static final RegistryObject<RecipeType<MachineRecipe>> GASEOUS_DIFFUSION_TYPE = type("gaseous_diffusion");
-    public static final RegistryObject<RecipeType<MachineRecipe>> CENTRIFUGE_TYPE = type("centrifuge");
     public static final RegistryObject<RecipeType<MachineRecipe>> CONVERTER_TYPE = type("converter");
 
     public static final RegistryObject<RecipeSerializer<?>> ORE_CRUSHER_SERIALIZER = serializer("ore_crusher", ORE_CRUSHER_TYPE);
@@ -32,7 +31,6 @@ public final class NPRecipes {
     public static final RegistryObject<RecipeSerializer<?>> MIXER_SERIALIZER = serializer("mixer", MIXER_TYPE);
     public static final RegistryObject<RecipeSerializer<?>> FUEL_ROD_ASSEMBLY_SERIALIZER = serializer("fuel_rod_assembly", FUEL_ROD_ASSEMBLY_TYPE);
     public static final RegistryObject<RecipeSerializer<?>> GASEOUS_DIFFUSION_SERIALIZER = serializer("gaseous_diffusion", GASEOUS_DIFFUSION_TYPE);
-    public static final RegistryObject<RecipeSerializer<?>> CENTRIFUGE_SERIALIZER = serializer("centrifuge", CENTRIFUGE_TYPE);
     public static final RegistryObject<RecipeSerializer<?>> CONVERTER_SERIALIZER = serializer("converter", CONVERTER_TYPE);
 
     private static RegistryObject<RecipeType<MachineRecipe>> type(String name) {

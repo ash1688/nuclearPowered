@@ -47,8 +47,8 @@ public final class NPCreativeTabs {
                         output.accept(NPItems.STAGE_2_COIN.get());
 
                         output.accept(NPItems.UPGRADE_EXTENDED_BURN.get());
-                        output.accept(NPItems.UPGRADE_REDUCED_WATER.get());
-                        output.accept(NPItems.UPGRADE_INCREASED_STEAM.get());
+                        output.accept(NPItems.UPGRADE_COOLANT_EFFICIENCY.get());
+                        output.accept(NPItems.UPGRADE_CONVERSION_EFFICIENCY.get());
                         output.accept(NPItems.UPGRADE_CLADDING.get());
 
                         // Machines (M3)
@@ -59,7 +59,6 @@ public final class NPCreativeTabs {
                         output.accept(NPBlocks.MIXER.get());
                         output.accept(NPBlocks.FUEL_ROD_ASSEMBLY.get());
                         output.accept(NPBlocks.GASEOUS_DIFFUSION.get());
-                        output.accept(NPBlocks.CENTRIFUGE.get());
                         output.accept(NPBlocks.CONVERTER.get());
                     })
                     .build());

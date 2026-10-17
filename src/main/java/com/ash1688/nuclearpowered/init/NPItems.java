@@ -16,7 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
  *  - Byproducts: Plutonium Dust, Caesium (Cs), Reclaim Uranium Powder
  *  - Igniter (S2): cold-start item for S2 reactors
  *  - Coins: Stage 1 Coin, Stage 2 Coin
- *  - Upgrade items: Extended Burn / Reduced Water / Increased Steam controller upgrades, Cladding Upgrade
+ *  - Upgrade items: Extended Burn / Coolant Efficiency / Conversion Efficiency controller upgrades, Cladding Upgrade
  *
  * Stages 3-5 fuels and igniters are intentionally deferred to post-MVP per design doc v1.1.
  */
@@ -58,8 +58,8 @@ public final class NPItems {
 
     // ===== Controller upgrades =====
     public static final RegistryObject<Item> UPGRADE_EXTENDED_BURN = REGISTER.register("upgrade_extended_burn", () -> new Item(basic().stacksTo(1)));
-    public static final RegistryObject<Item> UPGRADE_REDUCED_WATER = REGISTER.register("upgrade_reduced_water", () -> new Item(basic().stacksTo(1)));
-    public static final RegistryObject<Item> UPGRADE_INCREASED_STEAM = REGISTER.register("upgrade_increased_steam", () -> new Item(basic().stacksTo(1)));
+    public static final RegistryObject<Item> UPGRADE_COOLANT_EFFICIENCY = REGISTER.register("upgrade_coolant_efficiency", () -> new Item(basic().stacksTo(1)));
+    public static final RegistryObject<Item> UPGRADE_CONVERSION_EFFICIENCY = REGISTER.register("upgrade_conversion_efficiency", () -> new Item(basic().stacksTo(1)));
     public static final RegistryObject<Item> UPGRADE_CLADDING = REGISTER.register("upgrade_cladding", () -> new Item(basic()));
 
     private NPItems() {}

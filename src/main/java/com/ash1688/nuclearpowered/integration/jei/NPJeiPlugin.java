@@ -31,7 +31,7 @@ public final class NPJeiPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        // M3: register custom machine recipe categories (Ore Crusher, Centrifuge, etc.)
+        // M3: register custom machine recipe categories (Ore Crusher, Mixer, etc.)
     }
 
     @Override

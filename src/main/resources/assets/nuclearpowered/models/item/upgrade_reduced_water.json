@@ -1,4 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": { "layer0": "nuclearpowered:item/upgrade_reduced_water" }
-}

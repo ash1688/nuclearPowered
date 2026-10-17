@@ -7,6 +7,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
+import com.ash1688.nuclearpowered.recipe.MachineRecipe;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -25,11 +26,13 @@ import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Optional;
+
 /**
  * Base class for single-block machines.
  *
  * Item I/O sidedness: TOP=input, BOTTOM=output, FRONT=blocked (player-facing), other=blocked.
- * Energy I/O: all faces except FRONT accept FE (insert-only externally).
+ * Energy I/O: all faces accept FE (insert-only externally).
  * Fluid I/O (when enabled): input tank exposed on TOP, output tank exposed on BOTTOM,
  * BACK exposes both for hybrid I/O.
  */
@@ -59,6 +62,9 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
     protected int currentRecipeDuration = 0;
     protected int currentRecipeEnergyPerTick = 0;
 
+    /** Cached most-recently-matched recipe. Reused across ticks while inputs stay matching. */
+    protected Optional<MachineRecipe> cachedRecipe = Optional.empty();
+
     protected AbstractMachineBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state,
                                          int inputSlots, int outputSlots,
                                          int energyCapacity, int energyTransfer,
@@ -69,7 +75,13 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
         this.totalSlots = inputSlots + outputSlots;
 
         this.inventory = new ItemStackHandler(totalSlots) {
-            @Override protected void onContentsChanged(int slot) { setChanged(); }
+            @Override protected void onContentsChanged(int slot) {
+                setChanged();
+                // Input slot change → recipe lookup may produce a different match next tick.
+                if (slot < AbstractMachineBlockEntity.this.inputSlots) {
+                    AbstractMachineBlockEntity.this.invalidateRecipeCache();
+                }
+            }
             @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) {
                 return slot < AbstractMachineBlockEntity.this.inputSlots;
             }
@@ -83,18 +95,50 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
         this.inputCap = LazyOptional.of(() -> inputView);
         this.outputCap = LazyOptional.of(() -> outputView);
 
-        this.energy = new MachineEnergyStorage(energyCapacity, energyTransfer, e -> setChanged());
+        // Energy callback is a no-op — dirty-flag is flushed once per tick from tick() to avoid
+        // setChanged() spam (a cable inserting 200 FE/tick = 20 disk-marks/sec without rate-limit).
+        this.energy = new MachineEnergyStorage(energyCapacity, energyTransfer, e -> {});
         this.energyCap = LazyOptional.of(() -> energy);
 
-        this.inputFluidTank = inputFluidCapacity > 0 ? new FluidTank(inputFluidCapacity) {
-            @Override protected void onContentsChanged() { setChanged(); }
+        this.inputFluidTank = inputFluidCapacity > 0 ? new FluidTank(inputFluidCapacity, this::isValidInputFluid) {
+            @Override protected void onContentsChanged() {
+                setChanged();
+                AbstractMachineBlockEntity.this.invalidateRecipeCache();
+            }
         } : null;
         this.outputFluidTank = outputFluidCapacity > 0 ? new FluidTank(outputFluidCapacity) {
             @Override protected void onContentsChanged() { setChanged(); }
-            @Override public boolean isFluidValid(FluidStack stack) { return true; }
         } : null;
-        this.inputFluidCap = inputFluidTank != null ? LazyOptional.of(() -> (IFluidHandler) inputFluidTank) : LazyOptional.empty();
-        this.outputFluidCap = outputFluidTank != null ? LazyOptional.of(() -> (IFluidHandler) outputFluidTank) : LazyOptional.empty();
+        // External views: pipes may only fill the input tank and only drain the output tank.
+        this.inputFluidCap = inputFluidTank != null ? LazyOptional.of(() -> fillOnly(inputFluidTank)) : LazyOptional.empty();
+        this.outputFluidCap = outputFluidTank != null ? LazyOptional.of(() -> drainOnly(outputFluidTank)) : LazyOptional.empty();
+    }
+
+    /** Which fluids external pipes may push into the input tank. Override to restrict to recipe fluids. */
+    protected boolean isValidInputFluid(FluidStack stack) { return true; }
+
+    private static IFluidHandler fillOnly(FluidTank tank) {
+        return new IFluidHandler() {
+            @Override public int getTanks() { return tank.getTanks(); }
+            @Override public @NotNull FluidStack getFluidInTank(int t) { return tank.getFluidInTank(t); }
+            @Override public int getTankCapacity(int t) { return tank.getTankCapacity(t); }
+            @Override public boolean isFluidValid(int t, @NotNull FluidStack stack) { return tank.isFluidValid(t, stack); }
+            @Override public int fill(FluidStack resource, FluidAction action) { return tank.fill(resource, action); }
+            @Override public @NotNull FluidStack drain(FluidStack resource, FluidAction action) { return FluidStack.EMPTY; }
+            @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) { return FluidStack.EMPTY; }
+        };
+    }
+
+    private static IFluidHandler drainOnly(FluidTank tank) {
+        return new IFluidHandler() {
+            @Override public int getTanks() { return tank.getTanks(); }
+            @Override public @NotNull FluidStack getFluidInTank(int t) { return tank.getFluidInTank(t); }
+            @Override public int getTankCapacity(int t) { return tank.getTankCapacity(t); }
+            @Override public boolean isFluidValid(int t, @NotNull FluidStack stack) { return false; }
+            @Override public int fill(FluidStack resource, FluidAction action) { return 0; }
+            @Override public @NotNull FluidStack drain(FluidStack resource, FluidAction action) { return tank.drain(resource, action); }
+            @Override public @NotNull FluidStack drain(int maxDrain, FluidAction action) { return tank.drain(maxDrain, action); }
+        };
     }
 
     /** Convenience for item-only machines (no fluids). */
@@ -123,10 +167,12 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
                 progress = 0;
                 setChanged();
             }
+            // Flush any FE inserted by cables this tick (one setChanged() per tick max).
+            if (energy.isDirtyAndClear()) setChanged();
             return;
         }
         if (energy.getEnergyStored() < currentRecipeEnergyPerTick) {
-            setChanged();
+            if (energy.isDirtyAndClear()) setChanged();
             return;
         }
         energy.useEnergy(currentRecipeEnergyPerTick);
@@ -137,6 +183,7 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
             currentRecipeDuration = 0;
             currentRecipeEnergyPerTick = 0;
         }
+        energy.isDirtyAndClear();
         setChanged();
     }
 
@@ -149,8 +196,9 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if (cap == ForgeCapabilities.ENERGY) {
-            if (side == null || side != frontFace()) return energyCap.cast();
-            return LazyOptional.empty();
+            // Energy is exposed on every face (including front and null) — design §1.2:
+            // all FE I/O via Forge Energy, no proprietary cables, no side restrictions.
+            return energyCap.cast();
         }
         if (cap == ForgeCapabilities.ITEM_HANDLER) {
             if (side == Direction.UP) return inputCap.cast();
@@ -177,6 +225,9 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
     }
 
     protected Direction frontFace() { return Direction.NORTH; }
+
+    /** Drop the cached recipe; next tick will re-query the RecipeManager. */
+    public void invalidateRecipeCache() { cachedRecipe = Optional.empty(); }
 
     @Override
     public void invalidateCaps() {

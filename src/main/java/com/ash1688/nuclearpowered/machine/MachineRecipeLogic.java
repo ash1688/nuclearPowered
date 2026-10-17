@@ -1,6 +1,8 @@
 package com.ash1688.nuclearpowered.machine;
 
+import com.ash1688.nuclearpowered.NuclearPowered;
 import com.ash1688.nuclearpowered.recipe.MachineRecipe;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.fluids.FluidStack;
@@ -30,8 +32,7 @@ public final class MachineRecipeLogic {
     /** Generic recipe-start. Handles fluid I/O too. */
     public static boolean tryStartGeneric(AbstractMachineBlockEntity be, RecipeType<MachineRecipe> type) {
         if (be.getLevel() == null) return false;
-        Optional<MachineRecipe> match = be.getLevel().getRecipeManager()
-                .getRecipeFor(type, be.inputContainerView(), be.getLevel());
+        Optional<MachineRecipe> match = lookupRecipe(be, type);
         if (match.isEmpty()) return false;
         MachineRecipe r = match.get();
 
@@ -84,8 +85,7 @@ public final class MachineRecipeLogic {
     /** Generic recipe-complete. */
     public static void completeGeneric(AbstractMachineBlockEntity be, RecipeType<MachineRecipe> type) {
         if (be.getLevel() == null) return;
-        Optional<MachineRecipe> match = be.getLevel().getRecipeManager()
-                .getRecipeFor(type, be.inputContainerView(), be.getLevel());
+        Optional<MachineRecipe> match = lookupRecipe(be, type);
         if (match.isEmpty()) return;
         MachineRecipe r = match.get();
 
@@ -124,13 +124,50 @@ public final class MachineRecipeLogic {
         return existing.getCount() + toAdd.getCount() <= existing.getMaxStackSize();
     }
 
+    /**
+     * Merge a result into an output slot via setStackInSlot (not insertItem — the handler's
+     * isItemValid rejects output slots, which would void every result). Stack size is capped
+     * and onContentsChanged still fires. We pre-verified canFit() at recipe start, so overflow
+     * here means the slot changed mid-recipe — log it instead of silently losing.
+     */
     private static void insertOrMerge(ItemStackHandler inv, int slot, ItemStack toAdd) {
         ItemStack existing = inv.getStackInSlot(slot);
+        int moved;
         if (existing.isEmpty()) {
-            inv.setStackInSlot(slot, toAdd.copy());
+            moved = Math.min(toAdd.getCount(), toAdd.getMaxStackSize());
+            inv.setStackInSlot(slot, toAdd.copyWithCount(moved));
+        } else if (ItemStack.isSameItemSameTags(existing, toAdd)) {
+            moved = Math.min(toAdd.getCount(), existing.getMaxStackSize() - existing.getCount());
+            inv.setStackInSlot(slot, existing.copyWithCount(existing.getCount() + moved));
         } else {
-            existing.grow(toAdd.getCount());
-            inv.setStackInSlot(slot, existing);
+            moved = 0;
         }
+        if (moved < toAdd.getCount()) {
+            NuclearPowered.LOGGER.warn("Machine output overflow at slot {} ({} x{} dropped from result); "
+                    + "slot contents changed during recipe?", slot, toAdd.getItem(), toAdd.getCount() - moved);
+        }
+    }
+
+    /** True if any recipe of this type consumes the given fluid. Used to gate external tank fills. */
+    public static boolean isRecipeInputFluid(AbstractMachineBlockEntity be, RecipeType<MachineRecipe> type, FluidStack stack) {
+        if (be.getLevel() == null) return true;  // during load; tank contents come from NBT, not fill()
+        for (MachineRecipe r : be.getLevel().getRecipeManager().getAllRecipesFor(type)) {
+            if (!r.inputFluid().isEmpty() && r.inputFluid().isFluidEqual(stack)) return true;
+        }
+        return false;
+    }
+
+    /**
+     * Look up a recipe, using the BE's cached match when its inputs still satisfy it.
+     * Cache is invalidated on input slot / input-fluid changes via AbstractMachineBlockEntity.
+     */
+    private static Optional<MachineRecipe> lookupRecipe(AbstractMachineBlockEntity be, RecipeType<MachineRecipe> type) {
+        SimpleContainer view = be.inputContainerView();
+        if (be.cachedRecipe.isPresent() && be.cachedRecipe.get().matches(view, be.getLevel())) {
+            return be.cachedRecipe;
+        }
+        Optional<MachineRecipe> fresh = be.getLevel().getRecipeManager().getRecipeFor(type, view, be.getLevel());
+        be.cachedRecipe = fresh;
+        return fresh;
     }
 }

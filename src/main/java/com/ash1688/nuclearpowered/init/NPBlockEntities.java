@@ -25,8 +25,6 @@ public final class NPBlockEntities {
             REGISTER.register("fuel_rod_assembly", () -> BlockEntityType.Builder.of(FuelRodAssemblyBlockEntity::new, NPBlocks.FUEL_ROD_ASSEMBLY.get()).build(null));
     public static final RegistryObject<BlockEntityType<GaseousDiffusionBlockEntity>> GASEOUS_DIFFUSION =
             REGISTER.register("gaseous_diffusion", () -> BlockEntityType.Builder.of(GaseousDiffusionBlockEntity::new, NPBlocks.GASEOUS_DIFFUSION.get()).build(null));
-    public static final RegistryObject<BlockEntityType<CentrifugeBlockEntity>> CENTRIFUGE =
-            REGISTER.register("centrifuge", () -> BlockEntityType.Builder.of(CentrifugeBlockEntity::new, NPBlocks.CENTRIFUGE.get()).build(null));
     public static final RegistryObject<BlockEntityType<ConverterBlockEntity>> CONVERTER =
             REGISTER.register("converter", () -> BlockEntityType.Builder.of(ConverterBlockEntity::new, NPBlocks.CONVERTER.get()).build(null));
 

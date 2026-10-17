@@ -11,7 +11,6 @@
   "block.nuclearpowered.mixer": "Mixer",
   "block.nuclearpowered.fuel_rod_assembly": "Fuel Rod Assembly Machine",
   "block.nuclearpowered.gaseous_diffusion": "Gaseous Diffusion Chamber",
-  "block.nuclearpowered.centrifuge": "Centrifuge",
   "block.nuclearpowered.converter": "UF6 Converter",
 
   "item.nuclearpowered.raw_uranium": "Raw Uranium",
@@ -39,11 +38,10 @@
   "item.nuclearpowered.stage_2_coin": "Stage 2 Coin",
 
   "item.nuclearpowered.upgrade_extended_burn": "Controller Upgrade: Extended Burn",
-  "item.nuclearpowered.upgrade_reduced_water": "Controller Upgrade: Reduced Water",
-  "item.nuclearpowered.upgrade_increased_steam": "Controller Upgrade: Increased Steam",
+  "item.nuclearpowered.upgrade_coolant_efficiency": "Controller Upgrade: Coolant Efficiency",
+  "item.nuclearpowered.upgrade_conversion_efficiency": "Controller Upgrade: Conversion Efficiency",
   "item.nuclearpowered.upgrade_cladding": "Cladding Upgrade",
 
   "fluid_type.nuclearpowered.uf6": "Uranium Hexafluoride (UF₆)",
-  "fluid_type.nuclearpowered.steam": "Steam",
-  "fluid_type.nuclearpowered.tritium": "Tritium"
+  "fluid_type.nuclearpowered.steam": "Steam"
 }

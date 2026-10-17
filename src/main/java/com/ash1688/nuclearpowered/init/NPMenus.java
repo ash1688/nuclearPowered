@@ -26,8 +26,6 @@ public final class NPMenus {
             REGISTER.register("fuel_rod_assembly", () -> IForgeMenuType.create(FuelRodAssemblyMenu::fromNetwork));
     public static final RegistryObject<MenuType<GaseousDiffusionMenu>> GASEOUS_DIFFUSION =
             REGISTER.register("gaseous_diffusion", () -> IForgeMenuType.create(GaseousDiffusionMenu::fromNetwork));
-    public static final RegistryObject<MenuType<CentrifugeMenu>> CENTRIFUGE =
-            REGISTER.register("centrifuge", () -> IForgeMenuType.create(CentrifugeMenu::fromNetwork));
     public static final RegistryObject<MenuType<ConverterMenu>> CONVERTER =
             REGISTER.register("converter", () -> IForgeMenuType.create(ConverterMenu::fromNetwork));
 

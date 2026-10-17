@@ -49,27 +49,11 @@ public final class NPFluids {
     public static final RegistryObject<Fluid> STEAM_FLOWING = FLUIDS.register("flowing_steam",
             () -> new ForgeFlowingFluid.Flowing(NPFluids.STEAM_PROPERTIES));
 
-    // ===== Tritium =====
-    public static final RegistryObject<FluidType> TRITIUM_TYPE =
-            FLUID_TYPES.register("tritium", () -> new FluidType(
-                    FluidType.Properties.create()
-                            .descriptionId("fluid_type.nuclearpowered.tritium")
-                            .density(70)
-                            .viscosity(400)
-                            .temperature(295)
-                            .lightLevel(2)));
-    public static final RegistryObject<Fluid> TRITIUM = FLUIDS.register("tritium",
-            () -> new ForgeFlowingFluid.Source(NPFluids.TRITIUM_PROPERTIES));
-    public static final RegistryObject<Fluid> TRITIUM_FLOWING = FLUIDS.register("flowing_tritium",
-            () -> new ForgeFlowingFluid.Flowing(NPFluids.TRITIUM_PROPERTIES));
-
     // Properties are built lazily via Suppliers so the registry objects above resolve.
     public static final ForgeFlowingFluid.Properties UF6_PROPERTIES =
             new ForgeFlowingFluid.Properties(UF6_TYPE, UF6, UF6_FLOWING);
     public static final ForgeFlowingFluid.Properties STEAM_PROPERTIES =
             new ForgeFlowingFluid.Properties(STEAM_TYPE, STEAM, STEAM_FLOWING);
-    public static final ForgeFlowingFluid.Properties TRITIUM_PROPERTIES =
-            new ForgeFlowingFluid.Properties(TRITIUM_TYPE, TRITIUM, TRITIUM_FLOWING);
 
     private NPFluids() {}
 }
