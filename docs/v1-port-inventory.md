@@ -108,3 +108,7 @@ All five open questions are resolved:
 3. **Hot spent rod.** Two items: Hot Spent Fuel Rod hurts while held and never self-cools; Spent Fuel Rod is the cooled one. See CONTEXT.
 4. **Diagnostic outline.** Mismatch Marker: through-wall, only for the player who poked, clears on re-poke or after 30 s. See CONTEXT.
 5. **Cooling Loop vs Water Tank.** Water Tank is a role, not a block. Cooling Loop dropped. See CONTEXT.
+
+## Issues (published 2026-10-17)
+
+Port/Build rows are tracked as GitHub issues #2–#20 on `ash1688/nuclearPowered`. Each one is a vertical slice; dependencies are in its "Blocked by" section. A follow-up decision changed the plan: S1 piles **self-regulate and cannot melt down** ([ADR 0004](adr/0004-s1-pile-self-regulates.md)), so meltdown is now #15 (S2 only).

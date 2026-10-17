@@ -1,5 +1,7 @@
 # Stochastic Partial Meltdown with Mandatory Halt
 
+> **Scope amended by [ADR 0004](0004-s1-pile-self-regulates.md):** applies to S2+ reactors only. S1 Chicago Piles cannot melt down. The S1 column of the cap table is unused.
+
 Reactor failure is modelled as a **stochastic Partial Meltdown** in a `0.75–0.90` heat-fraction danger zone, with a quadratic per-second roll, an auto-SCRAM at `0.90`, mandatory reactor halt on every meltdown (regardless of severity), and a **severity tier** (mild/moderate/severe) that scales a packet of per-block-role damage caps. Caps scale super-proportionally with reactor footprint, and there is a flat 5% chance per meltdown of destroying a port — or, on the worst luck, the controller itself.
 
 The shape exists to make the danger zone feel *tense rather than punishing-or-trivial*: a clean threshold (heat > X → meltdown) makes the game a hard-coded ceiling players park beneath; an auto-SCRAM-only model with no meltdown removes the consequence of recklessness entirely. The stochastic zone preserves "true catastrophe" as a tail outcome while making most failures legible and recoverable.

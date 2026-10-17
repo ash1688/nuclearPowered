@@ -60,6 +60,12 @@ The reactor's heat reservoir size — the total amount of heat it can hold befor
 **Heat Generation**:
 The rate at which heat enters the bathtub each tick. Computed as `fuel_burn_rate × (1 − rod_insertion_pct) × enrichment_factor × active_fuel_rod_count`. The faucet.
 
+In S1 the faucet is throttled by **Pile Self-Regulation**.
+
+**Pile Self-Regulation** (S1 only):
+A Chicago Pile's Heat Generation falls as its Heat Fraction rises. The pile settles at an equilibrium heat below its Heat Capacity and can never melt down. It has no Danger zone, no Auto-SCRAM, no Partial Meltdown and no Igniter. The S1 lesson is "more thermocouples = more power", not risk management.
+_Avoid_: S1 meltdown, pile SCRAM.
+
 **Heat Dissipation**:
 The rate at which heat leaves the bathtub each tick. Two formulas — S1 piles and S2+ reactors compute it differently:
 - **S1 (Chicago Pile)** — `thermocouple_count × thermocouple_extraction_rate`. The heat that thermocouples extract is converted directly to FE/t. No coolant fluid. No flow rate.
@@ -174,7 +180,7 @@ S1 total FE output is therefore `thermocouple_count × thermocouple_fe_per_tick`
 **Heat fraction**:
 The reactor's current heat as a fraction of its meltdown threshold (`current_heat / meltdown_threshold`). The single value the player monitors and that drives all failure logic. Expressed in the GUI as a percentage.
 
-**Safe zone / Danger zone / Auto-SCRAM**:
+**Safe zone / Danger zone / Auto-SCRAM** (S2+ only):
 Three heat-fraction bands.
 - **Safe zone** = `heat_fraction < 0.75`. No meltdown risk.
 - **Danger zone** = `0.75 ≤ heat_fraction < 0.90`. Each interval, a stochastic roll may trigger a Partial Meltdown; per-roll probability scales upward through the band.
@@ -205,7 +211,7 @@ Block-role damage pool (each role rolls its own `0 to cap × severity_multiplier
 
 Default starting caps (configurable; expressed at *severe* tier, i.e. ×1.0):
 
-| Block role | 3×3×3 (S1) | 5×5×5 (S2) | 7×7×7 (S3) | 9×9×7 (S4) | 13×13×9+ (S5) |
+| Block role | 3×3×3 (S1 — n/a, see Pile Self-Regulation) | 5×5×5 (S2) | 7×7×7 (S3) | 9×9×7 (S4) | 13×13×9+ (S5) |
 | --- | --- | --- | --- | --- | --- |
 | Casings | 0–5 | 0–9 | 0–14 | 0–20 | 0–32 |
 | Fuel rods | 0–5 | 0–8 | 0–12 | 0–17 | 0–27 |
@@ -218,7 +224,7 @@ Cap scaling is **super-proportional** with reactor footprint — bigger reactors
 _Avoid_: meltdown (ambiguous — every meltdown in this design is a Partial Meltdown; severity comes from the tier roll, not from a binary partial/full distinction).
 
 **Igniter**:
-A stage-specific consumable item, crafted from that stage's byproduct (Cs for S2, Tritium for S3, …). Consumed on every cold start: first start of a freshly-built reactor, and every restart after SCRAM (manual or auto). Not consumed when resuming from Hot Shutdown.
+A stage-specific consumable item, crafted from that stage's byproduct (Cs for S2, Tritium for S3, …). S2+ only: a Chicago Pile needs no Igniter. Consumed on every cold start: first start of a freshly-built reactor, and every restart after SCRAM (manual or auto). Not consumed when resuming from Hot Shutdown.
 
 **Redstone Control Port**:
 A port block (replaces a casing slot on any non-top layer) that exposes the reactor to redstone wire. Two inputs are read per side:
