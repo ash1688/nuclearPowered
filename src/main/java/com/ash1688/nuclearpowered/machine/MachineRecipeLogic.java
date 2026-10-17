@@ -5,10 +5,13 @@ import com.ash1688.nuclearpowered.recipe.MachineRecipe;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.ItemStackHandler;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -75,6 +78,15 @@ public final class MachineRecipeLogic {
         be.currentRecipeDuration = r.duration();
         be.currentRecipeEnergyPerTick = perTick;
         return true;
+    }
+
+    /** True if some recipe of this type accepts the stack in the given ingredient slot. */
+    public static boolean isIngredientOf(@Nullable Level level, RecipeType<MachineRecipe> type, int slot, ItemStack stack) {
+        if (level == null) return true; // no recipe manager yet (e.g. during load) — don't reject
+        for (MachineRecipe r : level.getRecipeManager().getAllRecipesFor(type)) {
+            if (slot < r.ingredients().size() && r.ingredients().get(slot).test(stack)) return true;
+        }
+        return false;
     }
 
     /** 1+-in / 1-out item-only machines complete recipe. */

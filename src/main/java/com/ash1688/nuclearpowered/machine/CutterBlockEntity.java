@@ -9,6 +9,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -22,6 +23,8 @@ public final class CutterBlockEntity extends AbstractMachineBlockEntity implemen
         BlockState s = getBlockState();
         return s.hasProperty(HorizontalDirectionalBlock.FACING) ? s.getValue(HorizontalDirectionalBlock.FACING) : Direction.NORTH;
     }
+    // Only cooled Spent Fuel Rods: a Hot Spent Fuel Rod must go through a Cooling Pond / Spent Fuel Pool first.
+    @Override protected boolean isValidInputItem(int slot, ItemStack stack) { return MachineRecipeLogic.isIngredientOf(getLevel(), NPRecipes.CUTTER_TYPE.get(), slot, stack); }
     @Override protected boolean tryStartRecipe() { return MachineRecipeLogic.tryStartGeneric(this, NPRecipes.CUTTER_TYPE.get()); }
     @Override protected void completeRecipe() { MachineRecipeLogic.completeGeneric(this, NPRecipes.CUTTER_TYPE.get()); }
     @Override public @NotNull Component getDisplayName() { return Component.translatable("block.nuclearpowered.cutter"); }

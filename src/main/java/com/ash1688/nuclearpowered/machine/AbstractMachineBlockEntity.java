@@ -83,7 +83,8 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
                 }
             }
             @Override public boolean isItemValid(int slot, @NotNull ItemStack stack) {
-                return slot < AbstractMachineBlockEntity.this.inputSlots;
+                return slot < AbstractMachineBlockEntity.this.inputSlots
+                        && AbstractMachineBlockEntity.this.isValidInputItem(slot, stack);
             }
         };
         IItemHandler inputView = new RangedWrapper(inventory, 0, inputSlots) {
@@ -113,6 +114,9 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
         this.inputFluidCap = inputFluidTank != null ? LazyOptional.of(() -> fillOnly(inputFluidTank)) : LazyOptional.empty();
         this.outputFluidCap = outputFluidTank != null ? LazyOptional.of(() -> drainOnly(outputFluidTank)) : LazyOptional.empty();
     }
+
+    /** Which items may go into an input slot (GUI and automation). Override to restrict to recipe ingredients. */
+    protected boolean isValidInputItem(int slot, ItemStack stack) { return true; }
 
     /** Which fluids external pipes may push into the input tank. Override to restrict to recipe fluids. */
     protected boolean isValidInputFluid(FluidStack stack) { return true; }

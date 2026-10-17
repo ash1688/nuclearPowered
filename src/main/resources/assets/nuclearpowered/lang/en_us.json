@@ -30,6 +30,8 @@
   "item.nuclearpowered.natural_uranium_fuel_rod": "Natural Uranium Fuel Rod",
   "item.nuclearpowered.leu_fuel_rod": "LEU Fuel Rod",
   "item.nuclearpowered.mox_fuel_rod": "MOX Fuel Rod",
+  "item.nuclearpowered.hot_spent_fuel_rod": "Hot Spent Fuel Rod",
+  "item.nuclearpowered.hot_spent_fuel_rod.tooltip": "Burns while held. Cool it in a Cooling Pond or Spent Fuel Pool.",
   "item.nuclearpowered.spent_fuel_rod": "Spent Fuel Rod",
 
   "item.nuclearpowered.igniter_s2": "Stage 2 Igniter",

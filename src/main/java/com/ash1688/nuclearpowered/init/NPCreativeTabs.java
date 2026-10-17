@@ -39,6 +39,7 @@ public final class NPCreativeTabs {
                         output.accept(NPItems.NATURAL_URANIUM_FUEL_ROD.get());
                         output.accept(NPItems.LEU_FUEL_ROD.get());
                         output.accept(NPItems.MOX_FUEL_ROD.get());
+                        output.accept(NPItems.HOT_SPENT_FUEL_ROD.get());
                         output.accept(NPItems.SPENT_FUEL_ROD.get());
 
                         output.accept(NPItems.IGNITER_S2.get());

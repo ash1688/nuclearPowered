@@ -1,6 +1,7 @@
 package com.ash1688.nuclearpowered.init;
 
 import com.ash1688.nuclearpowered.NuclearPowered;
+import com.ash1688.nuclearpowered.item.HotSpentFuelRodItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -12,7 +13,7 @@ import net.minecraftforge.registries.RegistryObject;
  * MVP scope (S1 + S2):
  *  - Ores & raw materials: Yellowcake, UO2, UF4 (UF6 is a fluid; see NPFluids)
  *  - Fuel pellets: Natural U, LEU, MOX
- *  - Cladding (empty), finished fuel rods (Natural U, LEU, MOX), spent fuel rods
+ *  - Cladding (empty), finished fuel rods (Natural U, LEU, MOX), hot spent + (cooled) spent fuel rods
  *  - Byproducts: Plutonium Dust, Caesium (Cs), Reclaim Uranium Powder
  *  - Igniter (S2): cold-start item for S2 reactors
  *  - Coins: Stage 1 Coin, Stage 2 Coin
@@ -47,6 +48,7 @@ public final class NPItems {
     public static final RegistryObject<Item> NATURAL_URANIUM_FUEL_ROD = REGISTER.register("natural_uranium_fuel_rod", () -> new Item(basic()));
     public static final RegistryObject<Item> LEU_FUEL_ROD = REGISTER.register("leu_fuel_rod", () -> new Item(basic()));
     public static final RegistryObject<Item> MOX_FUEL_ROD = REGISTER.register("mox_fuel_rod", () -> new Item(basic()));
+    public static final RegistryObject<Item> HOT_SPENT_FUEL_ROD = REGISTER.register("hot_spent_fuel_rod", () -> new HotSpentFuelRodItem(basic()));
     public static final RegistryObject<Item> SPENT_FUEL_ROD = REGISTER.register("spent_fuel_rod", () -> new Item(basic()));
 
     // ===== Igniter (S2 cold-start) =====
