@@ -72,6 +72,12 @@ public final class NPBlocks {
     public static final RegistryObject<Block> CONVERTER = registerWithItem("converter",
             () -> new MachineBlock(ConverterBlockEntity::new, NPBlockEntities.CONVERTER));
 
+    // ===== Bootstrap tier (ADR 0002): free, unlocked coal power =====
+    public static final RegistryObject<Block> COAL_BOILER = registerWithItem("coal_boiler",
+            () -> new MachineBlock(CoalBoilerBlockEntity::new, NPBlockEntities.COAL_BOILER));
+    public static final RegistryObject<Block> STEAM_ENGINE = registerWithItem("steam_engine",
+            () -> new MachineBlock(SteamEngineBlockEntity::new, NPBlockEntities.STEAM_ENGINE));
+
     private static <B extends Block> RegistryObject<B> registerWithItem(String name, Supplier<B> blockSupplier) {
         RegistryObject<B> block = REGISTER.register(name, blockSupplier);
         NPItems.REGISTER.register(name, () -> new BlockItem(block.get(), new Item.Properties()));

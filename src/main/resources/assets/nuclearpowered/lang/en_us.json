@@ -45,5 +45,8 @@
   "item.nuclearpowered.upgrade_cladding": "Cladding Upgrade",
 
   "fluid_type.nuclearpowered.uf6": "Uranium Hexafluoride (UF₆)",
-  "fluid_type.nuclearpowered.steam": "Steam"
+  "fluid_type.nuclearpowered.steam": "Steam",
+  "block.nuclearpowered.coal_boiler": "Coal Boiler",
+  "block.nuclearpowered.steam_engine": "Steam Engine",
+  "gui.nuclearpowered.fe_per_tick": "%s / %s FE/t"
 }

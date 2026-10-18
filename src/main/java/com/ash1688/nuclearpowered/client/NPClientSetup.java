@@ -3,6 +3,7 @@ package com.ash1688.nuclearpowered.client;
 import com.ash1688.nuclearpowered.NuclearPowered;
 import com.ash1688.nuclearpowered.client.screen.BaseMachineScreen;
 import com.ash1688.nuclearpowered.client.screen.FluidMachineScreen;
+import com.ash1688.nuclearpowered.client.screen.SteamEngineScreen;
 import com.ash1688.nuclearpowered.init.NPMenus;
 import com.ash1688.nuclearpowered.machine.BaseMachineMenu;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -32,6 +33,11 @@ public final class NPClientSetup {
             // Fluid-input machine (Converter): fluid bar on left
             regFluid(NPMenus.CONVERTER.get(), "converter", 79, 35,
                     true, 52, 14, false, 0, 0);
+
+            // Bootstrap tier: boiler shows water (left) + steam (right), arrow = burn left
+            regFluid(NPMenus.COAL_BOILER.get(), "coal_boiler", 79, 35,
+                    true, 30, 14, true, 116, 14);
+            MenuScreens.register(NPMenus.STEAM_ENGINE.get(), SteamEngineScreen::new);
         });
     }
 

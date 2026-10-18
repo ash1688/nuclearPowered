@@ -112,6 +112,7 @@ minecraft {
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
+    mavenCentral()
     // JEI lives on BlameJared's maven
     maven {
         name = 'BlameJared'
@@ -134,6 +135,10 @@ repositories {
 
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // ---- Unit tests (pure-logic modules only; in-game behaviour is covered by GameTests) ----
+    testImplementation "org.junit.jupiter:junit-jupiter:${junit_version}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
 
     // ---- JEI (required at compile + runtime for hidden-recipe scaffolding) ----
     compileOnly fg.deobf("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
@@ -212,4 +217,8 @@ publishing {
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+tasks.named('test', Test).configure {
+    useJUnitPlatform()
 }

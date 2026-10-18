@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top":   "nuclearpowered:block/coal_boiler_top",
+    "front": "nuclearpowered:block/coal_boiler_front",
+    "side":  "nuclearpowered:block/coal_boiler_side"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [ "IPI", "CRC", "IPI" ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "P": { "item": "minecraft:piston" },
+    "C": { "tag": "forge:ingots/copper" },
+    "R": { "tag": "forge:storage_blocks/redstone" }
+  },
+  "result": { "item": "nuclearpowered:steam_engine", "count": 1 }
+}

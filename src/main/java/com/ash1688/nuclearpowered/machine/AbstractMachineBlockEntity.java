@@ -22,6 +22,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.items.wrapper.EmptyHandler;
 import net.minecraftforge.items.wrapper.RangedWrapper;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -87,10 +88,12 @@ public abstract class AbstractMachineBlockEntity extends BlockEntity {
                         && AbstractMachineBlockEntity.this.isValidInputItem(slot, stack);
             }
         };
-        IItemHandler inputView = new RangedWrapper(inventory, 0, inputSlots) {
+        // RangedWrapper rejects empty ranges, so machines with no input or no output slots
+        // (Gaseous Diffusion, Converter, Steam Engine…) get an empty handler on that side.
+        IItemHandler inputView = inputSlots == 0 ? EmptyHandler.INSTANCE : new RangedWrapper(inventory, 0, inputSlots) {
             @Override public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate) { return ItemStack.EMPTY; }
         };
-        IItemHandler outputView = new RangedWrapper(inventory, inputSlots, totalSlots) {
+        IItemHandler outputView = outputSlots == 0 ? EmptyHandler.INSTANCE : new RangedWrapper(inventory, inputSlots, totalSlots) {
             @Override public @NotNull ItemStack insertItem(int slot, @NotNull ItemStack stack, boolean simulate) { return stack; }
         };
         this.inputCap = LazyOptional.of(() -> inputView);

@@ -27,6 +27,10 @@ public final class NPBlockEntities {
             REGISTER.register("gaseous_diffusion", () -> BlockEntityType.Builder.of(GaseousDiffusionBlockEntity::new, NPBlocks.GASEOUS_DIFFUSION.get()).build(null));
     public static final RegistryObject<BlockEntityType<ConverterBlockEntity>> CONVERTER =
             REGISTER.register("converter", () -> BlockEntityType.Builder.of(ConverterBlockEntity::new, NPBlocks.CONVERTER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<CoalBoilerBlockEntity>> COAL_BOILER =
+            REGISTER.register("coal_boiler", () -> BlockEntityType.Builder.of(CoalBoilerBlockEntity::new, NPBlocks.COAL_BOILER.get()).build(null));
+    public static final RegistryObject<BlockEntityType<SteamEngineBlockEntity>> STEAM_ENGINE =
+            REGISTER.register("steam_engine", () -> BlockEntityType.Builder.of(SteamEngineBlockEntity::new, NPBlocks.STEAM_ENGINE.get()).build(null));
 
     private NPBlockEntities() {}
 }

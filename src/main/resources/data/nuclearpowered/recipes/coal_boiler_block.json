@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "blocks",
+  "pattern": [ "III", "IBI", "IFI" ],
+  "key": {
+    "I": { "tag": "forge:ingots/iron" },
+    "B": { "item": "minecraft:bucket" },
+    "F": { "item": "minecraft:furnace" }
+  },
+  "result": { "item": "nuclearpowered:coal_boiler", "count": 1 }
+}

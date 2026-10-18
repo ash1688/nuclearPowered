@@ -28,6 +28,10 @@ public final class NPMenus {
             REGISTER.register("gaseous_diffusion", () -> IForgeMenuType.create(GaseousDiffusionMenu::fromNetwork));
     public static final RegistryObject<MenuType<ConverterMenu>> CONVERTER =
             REGISTER.register("converter", () -> IForgeMenuType.create(ConverterMenu::fromNetwork));
+    public static final RegistryObject<MenuType<CoalBoilerMenu>> COAL_BOILER =
+            REGISTER.register("coal_boiler", () -> IForgeMenuType.create(CoalBoilerMenu::fromNetwork));
+    public static final RegistryObject<MenuType<SteamEngineMenu>> STEAM_ENGINE =
+            REGISTER.register("steam_engine", () -> IForgeMenuType.create(SteamEngineMenu::fromNetwork));
 
     private NPMenus() {}
 }

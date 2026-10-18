@@ -61,6 +61,10 @@ public final class NPCreativeTabs {
                         output.accept(NPBlocks.FUEL_ROD_ASSEMBLY.get());
                         output.accept(NPBlocks.GASEOUS_DIFFUSION.get());
                         output.accept(NPBlocks.CONVERTER.get());
+
+                        // Bootstrap tier
+                        output.accept(NPBlocks.COAL_BOILER.get());
+                        output.accept(NPBlocks.STEAM_ENGINE.get());
                     })
                     .build());
 

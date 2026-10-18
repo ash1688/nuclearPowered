@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "top":   "nuclearpowered:block/steam_engine_top",
+    "front": "nuclearpowered:block/steam_engine_front",
+    "side":  "nuclearpowered:block/steam_engine_side"
+  }
+}
