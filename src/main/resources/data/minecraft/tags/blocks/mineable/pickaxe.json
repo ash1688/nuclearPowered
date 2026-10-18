@@ -5,6 +5,14 @@
     "nuclearpowered:deepslate_uranium_ore",
     "nuclearpowered:raw_uranium_block",
     "nuclearpowered:coal_boiler",
-    "nuclearpowered:steam_engine"
+    "nuclearpowered:steam_engine",
+    "nuclearpowered:ore_crusher",
+    "nuclearpowered:cutter",
+    "nuclearpowered:macerator",
+    "nuclearpowered:separator",
+    "nuclearpowered:mixer",
+    "nuclearpowered:fuel_rod_assembly",
+    "nuclearpowered:gaseous_diffusion",
+    "nuclearpowered:converter"
   ]
 }
